@@ -28,6 +28,15 @@ class EntryPayload(BaseModel):
     remark: str | None = None
 
 
+class CorridorEventPayload(BaseModel):
+    """风险走廊上报事件：event_id 是幂等键，重复上报不会累加。"""
+
+    event_id: str
+    type: str
+    segment_id: int
+    payload: dict[str, Any] = Field(default_factory=dict)
+
+
 
 class RoadSectionEntry(BaseModel):
     """管养路段明细结构。"""
